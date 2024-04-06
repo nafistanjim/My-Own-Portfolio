@@ -41,3 +41,34 @@ seeMoreButtons.forEach((button) => {
 backButton.onclick = function(){
     carousel.classList.remove('showDetail');
 }
+// INNER SLIDER
+var btn = document.getElementsByClassName("btn");
+var slide1 = document.getElementById("slider1");
+var slide2 = document.getElementById("slider2");
+var slide3 = document.getElementById("slider3");
+
+// Function to handle button clicks
+function handleButtonClick(index) {
+    var offset = index * -800;
+    slide1.style.transform = "translateX(" + offset + "px)";
+    slide2.style.transform = "translateX(" + offset + "px)";
+    slide3.style.transform = "translateX(" + offset + "px)";
+    for (var i = 0; i < btn.length; i++) {
+        btn[i].classList.remove("active");
+    }
+    btn[index].classList.add("active");
+}
+// Assign click event handlers to buttons
+for (var i = 0; i < btn.length; i++) {
+    btn[i].addEventListener("click", function() {
+        var index = parseInt(this.getAttribute("data-index"));
+        handleButtonClick(index);
+    });
+}
+nextButton.addEventListener("click", function() {
+    var index = 0; // Set index to 0 when clicking nextButton
+    handleButtonClick(index);
+});
+
+
+
